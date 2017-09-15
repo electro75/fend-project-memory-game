@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+var cardList=[];
 
 /*
  * Display the cards on the page
@@ -9,7 +9,22 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+function displayBlank(){
+    $('.deck').children().removeClass("match show open");
+}
+function openForFive(){
+    // var timeLeft=10;
+    // var startTimer=setInterval(function(){
+    //   timeLeft--;
+    //   $('.deck').children().addClass("show");
+    //   $('.glyphicons-alarm').val(timeLeft);
+    //   if(timeLeft<=0){
+    //     displayBlank();
+    //     clearInterval(startTimer);
+    //   },1000);
+    $('glyphicons-alarm').addClass("show");
+    };
+}
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -36,3 +51,9 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+ $('button').on('click',function(){
+   openForFive();
+ })
+ $('.fa-repeat').on('click',function(){
+   displayBlank();
+ });
