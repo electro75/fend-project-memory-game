@@ -44,10 +44,11 @@ function displayCard(evt){  //displays the card that is clicked on
     return;
 }
 function check(e){  //tries to check the two cards? i think im going wrong here
-    var selected=$(e.target).children();
-    console.log(openList.length)
-    if(openList.length==1){
-        if(openList[0]==selected){
+    var selected=$(e).children();
+    var str=selected[0].className;
+    //console.log(str);
+     if(openList.length==1){
+        if(openList[0]==str){
             $('.show').addClass('match');
             $('.show').removeClass('open');
             matched++;
@@ -58,7 +59,7 @@ function check(e){  //tries to check the two cards? i think im going wrong here
         openList=[];
     }
     else{
-        openList[0]=selected;
+        openList[0]=str;
     }
 return;
 }
@@ -117,8 +118,9 @@ function shuffle(array) {
  });
  $('.card').on('click',function(e){
     displayCard(e);
-    check(e);
-});
+    check(this);
 
+
+});
 
 });
