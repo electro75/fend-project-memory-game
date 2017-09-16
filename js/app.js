@@ -5,17 +5,18 @@ $(function(){
 var cardList=["fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt",
               "fa fa-cube","fa fa-anchor","fa fa-leaf","fa fa-bicycle",
                "fa fa-diamond","fa fa-bomb","fa fa-leaf","fa fa-bomb",
-               "fa fa-bolt","fa fa-bicycle","fa fa-paper-plane-o","fa fa-cube"];
-var time=0;
-var openList=[];
-var matched=0;
+               "fa fa-bolt","fa fa-bicycle","fa fa-paper-plane-o","fa fa-cube"]; // stores all the cards
+var time=0; //to store the time
+
+var openList=[];// stores the cards that are open
+var matched=0; //store the number of correct guesses
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-function displayShuffled(array){
+function displayShuffled(array){  //displaying the shuffled deck
     var i=0;
     var len=array.length;
     var currentCard=$('.deck').children().first();
@@ -26,11 +27,11 @@ function displayShuffled(array){
     }
     return;
 };
-function displayBlank(){
+function displayBlank(){    //hides the cards
     $('.card').removeClass("match show open");
     return ;
 };
-function timerStart(){
+function timerStart(){ //starts the times
     var id = setInterval(function(){ 
     time++; 
     $('#timer').children().text(time+"s");
@@ -38,11 +39,11 @@ function timerStart(){
    },1000);
     return;
 };
-function displayCard(evt){
+function displayCard(evt){  //displays the card that is clicked on
     $(evt.target).addClass("show open");
     return;
 }
-function check(e){
+function check(e){  //tries to check the two cards? i think im going wrong here
     var selected=$(e.target).children();
     console.log(openList.length)
     if(openList.length==1){
@@ -61,7 +62,7 @@ function check(e){
     }
 return;
 }
-function openForFive(){
+function openForFive(){ //gives a preview of the shuffled deck
     $('.deck').children().addClass("show");
     var timeleft = 8;
     var shuffledDeck= shuffle(cardList);
@@ -107,7 +108,8 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- $('.btn').on('click',function(){
+ //event-listeners
+ $('.btn-primary').on('click',function(){
    openForFive();
  });
  $('.fa-repeat').on('click',function(){
