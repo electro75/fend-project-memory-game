@@ -10,6 +10,7 @@ var time=0; //to store the time
 var previousClick=[];
 var openList=[];// stores the cards that are open
 var matched=0; //store the number of correct guesses
+var moves=0;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -32,10 +33,17 @@ function displayBlank(){    //hides the cards
     return ;
 };
 function timerStart(){ //starts the times
-    var id = setInterval(function(){ 
-    time++; 
+    var gameTimer = setInterval(function(){ 
+    ++time; 
     $('#timer').children().text(time+"s");
-    
+    if(matched==8){
+        clearInterval(gameTimer);
+        $('#countdown').removeClass('btn-primary').addClass('btn-success').text("You Won!")
+        console.log("you won");
+        console.log("moves :"+moves);
+        console.log("Time :"+time);
+        // return;
+    }
    },1000);
     return;
 };
@@ -52,8 +60,9 @@ function check(e){  //tries to check the two cards.
         if(openList[0]==str && previousClick[0]!=str1){
             $('.show').addClass('match');
             $('.show').removeClass('open');
+            $('match').off('click');
             matched++
-            console.log(matched);
+            // console.log(matched);
         }
         else if(openList!=str && previousClick[0]!=str1){
             $('.show').removeClass('show open');
@@ -67,23 +76,25 @@ function check(e){  //tries to check the two cards.
     else{
         openList[0]=str;
         previousClick[0]=str1;
+        moves++;
     }
 return;
 }
-function openForFive(){ //gives a preview of the shuffled deck
+function openForFive(){ //gives a preview of the shuffled deck for 8 seconds
     $('.deck').children().addClass("show");
+    $('#countdown').off('click');
     var timeleft = 8;
     var shuffledDeck= shuffle(cardList);
     displayShuffled(shuffledDeck);
-    var startTimer = setInterval(function(){
+    var countdown= setInterval(function(){
     timeleft--;
-    document.getElementById("countdown").textContent = " "+timeleft;
+    $('#countdown').text(" "+timeleft);
     if(timeleft <= 0){
 
-        clearInterval(startTimer);
+        clearInterval(countdown);
         displayBlank();
         timerStart();
-        
+        $('#countdown').text("Start Matching!");
     }
     },1000);
     return;
