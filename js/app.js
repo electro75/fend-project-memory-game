@@ -7,7 +7,7 @@ var cardList=["fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt",
                "fa fa-diamond","fa fa-bomb","fa fa-leaf","fa fa-bomb",
                "fa fa-bolt","fa fa-bicycle","fa fa-paper-plane-o","fa fa-cube"]; // stores all the cards
 var time=0; //to store the time
-
+var previousClick=[];
 var openList=[];// stores the cards that are open
 var matched=0; //store the number of correct guesses
 /*
@@ -43,23 +43,30 @@ function displayCard(evt){  //displays the card that is clicked on
     $(evt.target).addClass("show open");
     return;
 }
-function check(e){  //tries to check the two cards? i think im going wrong here
-    var selected=$(e).children();
-    var str=selected[0].className;
-    //console.log(str);
-     if(openList.length==1){
-        if(openList[0]==str){
+function check(e){  //tries to check the two cards.
+    var targetChild=$(e).children();
+    var str=targetChild[0].className;
+    var target=$(e);
+    var str1=target[0].className;
+    if (openList.length==1){
+        if(openList[0]==str && previousClick[0]!=str1){
             $('.show').addClass('match');
             $('.show').removeClass('open');
-            matched++;
+            matched++
+            console.log(matched);
         }
-        else{
-            $('.show').removeClass("show open");
+        else if(openList!=str && previousClick[0]!=str1){
+            $('.show').removeClass('show open');
+        }
+        else if(previousClick[0]==str1){
+            return;
         }
         openList=[];
+        previousClick=[];
     }
     else{
         openList[0]=str;
+        previousClick[0]=str1;
     }
 return;
 }
@@ -110,7 +117,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
  //event-listeners
- $('.btn-primary').on('click',function(){
+  $('.btn-primary').on('click',function(){
    openForFive();
  });
  $('.fa-repeat').on('click',function(){
@@ -119,8 +126,6 @@ function shuffle(array) {
  $('.card').on('click',function(e){
     displayCard(e);
     check(this);
-
-
-});
-
+ });
+console.log(matched)
 });
