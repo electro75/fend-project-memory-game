@@ -26,6 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width:100%;
 }
 
 h1 {
@@ -38,8 +39,8 @@ h1 {
  */
 
 .deck {
-    width: 60%;
-    min-height: 680px;
+   /* width: 500px;
+    height: 500px;*/
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -53,8 +54,8 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+   /* height: 100px;
+    width: 100px;*/
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -111,3 +112,32 @@ h1 {
 .btn{
     display:flex;
 }
+
+@media screen and (max-width: 700px){
+    .row .btn{
+        font-size:0.8rem;
+        white-space: normal;
+    }
+    .deck{
+        height:350px;
+        width:350px;
+    }
+    .card{
+        height:70px;
+        width:70px;
+    }
+    .fa-repeat .fa-star{
+        font-size:10px;
+    }
+}
+@media screen and (min-width: 701px){
+    .deck{
+        height:500px;
+        width:500px;
+    }
+    .card{
+        height:100px;
+        width:100px;
+    }
+ }
+

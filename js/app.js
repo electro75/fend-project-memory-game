@@ -81,6 +81,13 @@ function timerStart(){ //starts the timer
 
 function displayCard(evt){  //displays the card that is clicked on
     $(evt.target).addClass("show open");
+    function delay(){
+    setTimeout(function(){
+        $(evt.target).show();
+    },1000);
+    return;
+}
+    delay();
     return;
 }
 
@@ -110,6 +117,12 @@ function check(e){  //checks the two cards for similarities and differences
         openList[0]=str;
         previousClick[0]=str1;
         moves++;
+        $('.score-panel').find('.moves').text(" Moves :"+moves);
+        if(moves>10){
+            $('.rating').find('.3').removeClass('fa fa-star');
+        }else if(moves>20){
+            $('.rating').find('.2').removeClass('fa fa-star');
+        }
     }
 
 return;
@@ -160,7 +173,7 @@ $('.btn-primary').on('click',function(){
 $('.card').on('click',function(e){
     displayCard(e);
     check(this);
- });
+});
 
 $('.restart').on('click',function(){
     location.reload();
