@@ -1,6 +1,6 @@
 # Memory Game Project
 
-##Intrduction
+## Intrduction
 
 The classic childhood fun memory game where in the player has to match the symbols show in the deck!
 
@@ -11,4 +11,4 @@ The classic childhood fun memory game where in the player has to match the symbo
 * A preview will be shown for 8 seconds for the player to _memorise_ the position of the given symbols
 * A _successfull_ **move** is made when a player manages to match the two symbols or and a _failed_ **move** is when the player matches the wrong symbols
 
-###Enjoy!!
+### Enjoy!!
