@@ -1,6 +1,6 @@
 # Memory Game Project
 
-## Intrduction
+## Introduction
 
 The classic childhood fun memory game where in the player has to match the symbols show in the deck!
 
