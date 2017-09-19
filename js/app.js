@@ -22,26 +22,20 @@ function calculateRating(){ //calculates "rating" of a player based on the numbe
 }
 
 function endGame(){
-    $('.btn').hide();
-    $('.score-panel').find('.1').addClass('alert alert-success');
-    $('.alert').text("You won!! Moves:"+ moves+"    Time: "+time+" seconds");
-    $('.alert').append("<ul>Player Rating: <i></i></ul>");
+    // $('.btn').hide();
     var stars=calculateRating();
-    var currentStar=$('.alert').find('i');
-
+    $('.modal-body').append("Number of moves made :"+moves+"<br>")
+    $('.modal-body').append("Rating : <i></i><i></i><i></i>");
+    $('#restart').on('click',function(){
+        location.reload();
+    });
+    var currentStar=$('.modal-body').find('i').first();
     for (var i=0; i<stars;i++){
         currentStar.addClass('fa fa-star');
-        $('.alert').children().append("<i></i>");
         currentStar=currentStar.next();
     }
 
-    $('.alert').append("<span> Restart? <i></i>");
-    $('.alert').find('span').children().addClass('fa fa-repeat');
-    $('.alert').find('span').children().on('click',function(){
-        location.reload();
-        return;
-    });
-
+    $('#winModal').modal();
     return;
 }
 
@@ -81,13 +75,6 @@ function timerStart(){ //starts the timer
 
 function displayCard(evt){  //displays the card that is clicked on
     $(evt.target).addClass("show open");
-    function delay(){
-    setTimeout(function(){
-        $(evt.target).show();
-    },1000);
-    return;
-}
-    delay();
     return;
 }
 
@@ -120,7 +107,7 @@ function check(e){  //checks the two cards for similarities and differences
         $('.score-panel').find('.moves').text(" Moves :"+moves);
         if(moves>10){
             $('.rating').find('.3').removeClass('fa fa-star');
-        }else if(moves>20){
+        }if(moves>20){
             $('.rating').find('.2').removeClass('fa fa-star');
         }
     }
@@ -172,7 +159,12 @@ $('.btn-primary').on('click',function(){
 
 $('.card').on('click',function(e){
     displayCard(e);
-    check(this);
+    var obj=this;
+    setTimeout(function(){
+        check(obj);},200);
+    
+
+    // check(this);
 });
 
 $('.restart').on('click',function(){
