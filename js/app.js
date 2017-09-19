@@ -25,7 +25,7 @@ function endGame(){
     // $('.btn').hide();
     var stars=calculateRating();
     $('.modal-body').append("Number of moves made :"+moves+"<br>")
-    $('.modal-body').append("Rating : <i></i><i></i><i></i>");
+    $('.modal-body').append("Rating : <i></i><i></i><i></i> <br>");
     $('#restart').on('click',function(){
         location.reload();
     });
@@ -34,7 +34,7 @@ function endGame(){
         currentStar.addClass('fa fa-star');
         currentStar=currentStar.next();
     }
-
+    $('.modal-body').append("Time Taken :"+time+"secs");
     $('#winModal').modal();
     return;
 }
